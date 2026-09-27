@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-timesplit"                   # pip/PyPI name (with dashes)
+version = "0.1.0"
+dependencies = ["pytest"]
+
+[project.entry-points.pytest11]
+timesplit = "pytest_timesplit.plugin"          # short plugin name = "folder.hooks_file"
+
+[tool.setuptools]
+packages = ["pytest_timesplit"]             # the folder that holds your code

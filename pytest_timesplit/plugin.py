@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from splitter import split_tests
+from pytest_timesplit.splitter import split_tests
 durations = {}
 
 def pytest_runtest_logreport(report):
