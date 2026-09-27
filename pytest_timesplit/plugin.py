@@ -1,5 +1,4 @@
 import json
-import os
 
 import pytest
 
@@ -14,10 +13,12 @@ def pytest_sessionfinish(session, exitstatus):
         return
 
     shard = session.config.getoption("--shard")
+    # rootdir, not the current folder: pytest may be started from a subfolder
+    root = session.config.rootpath
     if shard is None:
-        path = ".test-durations.json"
+        path = root / ".test-durations.json"
     else:
-        path = f".test-durations.shard{shard}.json"
+        path = root / f".test-durations.shard{shard}.json"
     with open(path, "w") as f:
         json.dump(durations, f, indent=2)
 
@@ -42,8 +43,9 @@ def pytest_collection_modifyitems(config, items):
     # A brand-new project has no recorded times yet; every test then gets the
     # 1.0 default below, which splits roughly by count until a full run exists.
     recorded = {}
-    if os.path.exists(".test-durations.json"):
-        with open(".test-durations.json") as f:
+    path = config.rootpath / ".test-durations.json"
+    if path.exists():
+        with open(path) as f:
             recorded = json.load(f)
 
     test_times = {}
