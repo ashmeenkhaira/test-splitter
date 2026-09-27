@@ -1,7 +1,5 @@
 import json
 
-with open(".test-durations.json") as f:     # no "w", so it opens for reading
-    durations = json.load(f)          # load = file → dict  (dump = dict → file)
 
 def split_tests(durations, num_shards):
     # 1. make num_shards empty shards, and a matching list of loads (all 0)
@@ -18,8 +16,12 @@ def split_tests(durations, num_shards):
         smallest = loads.index(min(loads))
         shards[smallest].append(name)
         loads[smallest]+=durations[name]
-        print(name, "->", smallest, "| loads:", loads, "| shards:", shards)
 
     # 4. return the shards
     return shards
-print(split_tests(durations,3))
+    
+if __name__ == "__main__":
+    with open(".test-durations.json") as f:
+        durations = json.load(f)
+    print(split_tests(durations, 3))
+
