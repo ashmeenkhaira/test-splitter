@@ -3,7 +3,7 @@ name: tests
 on: [push]
 
 jobs:
-  test:
+  full:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -12,3 +12,17 @@ jobs:
           python-version: "3.11"
       - run: pip install pytest
       - run: pytest -v
+
+  sharded:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: pytest -v --shard ${{ matrix.shard }} --num-shards 3
