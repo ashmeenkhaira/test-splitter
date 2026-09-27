@@ -1,8 +1,8 @@
 {
-  "tests/test_app.py::test_login": 0.9011067999999796,
-  "tests/test_app.py::test_signup": 0.20087130000047182,
-  "tests/test_app.py::test_search": 0.6019707000004928,
-  "tests/test_app.py::test_pay": 0.5026717000000644,
-  "tests/test_app.py::test_cart": 0.4013433999998597,
-  "tests/test_app.py::test_logout": 0.10089470000048095
+  "tests/test_app.py::test_login": 0.9010675999998057,
+  "tests/test_app.py::test_signup": 0.2016524999999092,
+  "tests/test_app.py::test_search": 0.6026753000001008,
+  "tests/test_app.py::test_pay": 0.5025595999995858,
+  "tests/test_app.py::test_cart": 0.40228739999975005,
+  "tests/test_app.py::test_logout": 0.10140920000048936
 }
